@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > RestExceptionHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.crehana.staff.core.exception</a>
+</div>
+
+<h1>Coverage Summary for Class: RestExceptionHandler (com.crehana.staff.core.exception)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RestExceptionHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33,3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.crehana.staff.core.exception;
+&nbsp;
+&nbsp;import com.crehana.staff.core.exception.dto.ErrorMessage;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.ControllerAdvice;
+&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
+&nbsp;import org.springframework.web.bind.annotation.ResponseStatus;
+&nbsp;import org.springframework.web.server.ServerErrorException;
+&nbsp;import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@ControllerAdvice
+<b class="fc">&nbsp;public class RestExceptionHandler extends ResponseEntityExceptionHandler {</b>
+&nbsp;
+&nbsp;    @ExceptionHandler(DataBaseException.class)
+&nbsp;    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+&nbsp;    public ResponseEntity&lt;ErrorMessage&gt; dataBaseException(DataBaseException ex){
+<b class="nc">&nbsp;        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());</b>
+<b class="nc">&nbsp;        return ResponseEntity.internalServerError().body(errorMessage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(ServerErrorException.class)
+&nbsp;    @ResponseStatus(HttpStatus.CONFLICT)
+&nbsp;    public ResponseEntity&lt;ErrorMessage&gt; serverErrorException(ServerErrorException ex){
+<b class="nc">&nbsp;        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.CONFLICT, ex.getReason());</b>
+<b class="nc">&nbsp;        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-17 04:50</div>
+</div>
+</body>
+</html>

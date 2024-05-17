@@ -1,0 +1,5 @@
+com/crehana/staff/application/service/EmployeeServiceTest.class
+com/crehana/staff/infrastructure/adapter/RolePersistenceImplTest.class
+com/crehana/staff/StaffApplicationTests.class
+com/crehana/staff/application/controller/EmployeeControllerTest.class
+com/crehana/staff/infrastructure/adapter/EmployeePersistenceImplTest.class

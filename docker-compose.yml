@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  java_app_dev:
+    container_name: java_app
+    image: staff-java-app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    profiles: [ "dev" ]
+    environment:
+      SPRING_PROFILE: dev
+  java_app_test:
+    container_name: java_app
+    image: staff-java-app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    profiles: [ "test" ]
+    environment:
+      SPRING_PROFILE: test
+  java_app_prod:
+    container_name: java_app
+    image: staff-java-app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - java_db
+    profiles: ["prod"]
+    environment:
+      SPRING_PROFILE: prod
+  java_db:
+    container_name: java_db
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    profiles: ["prod"]
